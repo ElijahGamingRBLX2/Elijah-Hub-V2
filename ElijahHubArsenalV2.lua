@@ -409,11 +409,10 @@ Tab4:AddTextbox({
 	end	  
 })
 
-Tab5:AddButton({
+local Tab5 = Window:MakeTab({
 	Name = "Misc",
-	Callback = function()
-      		print("button pressed")
-  	end    
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
 })
 
 Tab5:AddButton({
