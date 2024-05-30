@@ -181,3 +181,212 @@ ESP:AddObjectListener(Workspace, { -- Object Path, For example: Workspace.ThisFo
 ESP.whatever = true
   	end    
 })
+
+local Tab3 = Window:MakeTab({
+	Name = "Gun Mods",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab3:AddButton({
+	Name = "Silent Aim V2",
+	Callback = function(silent)
+      		if silent then
+        local CurrentCamera = workspace.CurrentCamera
+local Players = game.Players
+local LocalPlayer = Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+function ClosestPlayer()
+    local MaxDist, Closest = math.huge
+    for I,V in pairs(Players.GetPlayers(Players)) do
+        if V == LocalPlayer then continue end
+        if V.Team == LocalPlayer then continue end
+        if not V.Character then continue end
+        local Head = V.Character.FindFirstChild(V.Character, "Head")
+        if not Head then continue end
+        local Pos, Vis = CurrentCamera.WorldToScreenPoint(CurrentCamera, Head.Position)
+        if not Vis then continue end
+        local MousePos, TheirPos = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y / 2), Vector2.new(Pos.X, Pos.Y)
+        local Dist = (TheirPos - MousePos).Magnitude
+        if Dist < MaxDist then
+            MaxDist = Dist
+            Closest = V
+        end
+    end
+    return Closest
+end
+local MT = getrawmetatable(game)
+local OldNC = MT.__namecall
+local OldIDX = MT.__index
+setreadonly(MT, false)
+MT.__namecall = newcclosure(function(self, ...)
+    local Args, Method = {...}, getnamecallmethod()
+    if Method == "FindPartOnRayWithIgnoreList" and not checkcaller() then
+        local CP = ClosestPlayer()
+        if CP and CP.Character and CP.Character.FindFirstChild(CP.Character, "Head") then
+            Args[1] = Ray.new(CurrentCamera.CFrame.Position, (CP.Character.Head.Position - CurrentCamera.CFrame.Position).Unit * 1000)
+            return OldNC(self, unpack(Args))
+        end
+    end
+    return OldNC(self, ...)
+end)
+MT.__index = newcclosure(function(self, K)
+    if K == "Clips" then
+        return workspace.Map
+    end
+    return OldIDX(self, K)
+end)
+setreadonly(MT, true)
+    else
+        local CurrentCamera = workspace.CurrentCamera
+local Players = game.Players
+local LocalPlayer = Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+function ClosestPlayer()
+    local MaxDist, Closest = math.huge
+    for I,V in pairs(Players.GetPlayers(Players)) do
+        if V == LocalPlayer then continue end
+        if V.Team == LocalPlayer then continue end
+        if not V.Character then continue end
+        local Head = V.Character.FindFirstChild(V.Character, "Head")
+        if not Head then continue end
+        local Pos, Vis = CurrentCamera.WorldToScreenPoint(CurrentCamera, Head.Position)
+        if not Vis then continue end
+        local MousePos, TheirPos = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 0, workspace.CurrentCamera.ViewportSize.Y / 0), Vector2.new(Pos.X, Pos.Y)
+        local Dist = (TheirPos - MousePos).Magnitude
+        if Dist < MaxDist then
+            MaxDist = Dist
+            Closest = V
+        end
+    end
+    return Closest
+end
+local MT = getrawmetatable(game)
+local OldNC = MT.__namecall
+local OldIDX = MT.__index
+setreadonly(MT, false)
+MT.__namecall = newcclosure(function(self, ...)
+    local Args, Method = {...}, getnamecallmethod()
+    if Method == "FindPartOnRayWithIgnoreList" and not checkcaller() then
+        local CP = ClosestPlayer()
+        if CP and CP.Character and CP.Character.FindFirstChild(CP.Character, "Head") then
+            Args[1] = Ray.new(CurrentCamera.CFrame.Position, (CP.Character.Head.Position - CurrentCamera.CFrame.Position).Unit * 1000)
+            return OldNC(self, unpack(Args))
+        end
+    end
+    return OldNC(self, ...)
+end)
+MT.__index = newcclosure(function(self, K)
+    if K == "Clips" then
+        return workspace.Map
+    end
+    return OldIDX(self, K)
+end)
+setreadonly(MT, true)
+    end
+  	end    
+})
+
+Tab3:AddButton({
+	Name = "Aimbot",
+	Callback = function(aimbot)
+      	        local Players = game:GetService("Players")
+    local RunService = game:GetService("RunService")
+    local UserInputService = game:GetService("UserInputService")
+    local GuiService = game:GetService("GuiService")
+    local LocalPlayer = Players.LocalPlayer
+    local Mouse = LocalPlayer:GetMouse()
+    local Camera = workspace.CurrentCamera
+    local sc = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
+    
+    local Down = true
+    local Inset = GuiService:GetGuiInset()
+    
+    --// Options \\--
+    getgenv().Options = {
+        Enabled = aimbot,
+        TeamCheck = true,
+        Triggerbot = true,
+        Smoothness = true,
+        AimPart = "Head",
+        FOV = 150
+    }
+    
+    --// Functions \\--
+    local gc = function()
+        local nearest = math.huge
+        local nearplr
+        for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+            if v ~= game:GetService("Players").LocalPlayer and v.Character and v.Character:FindFirstChild(Options.AimPart) then
+                if Options.TeamCheck then
+                    if game:GetService("Players").LocalPlayer.Team ~= v.Team then
+                        local pos = Camera:WorldToScreenPoint(v.Character[Options.AimPart].Position)
+                        local diff = math.sqrt((pos.X - sc.X) ^ 2 + (pos.Y + Inset.Y - sc.Y) ^ 2)
+                        if diff < nearest and diff < Options.FOV then
+                            nearest = diff
+                            nearplr = v
+                        end
+                    end
+                else
+                    local pos = Camera:WorldToScreenPoint(v.Character[Options.AimPart].Position)
+                    local diff = math.sqrt((pos.X - sc.X) ^ 2 + (pos.Y + Inset.Y - sc.Y) ^ 2)
+                    if diff < nearest and diff < Options.FOV then
+                        nearest = diff
+                        nearplr = v
+                    end
+                end
+            end
+        end
+        return nearplr
+    end -- google chrome made this but i modified it for it to use teamcheck
+    
+    function Circle()
+        local circ = Drawing.new('Circle')
+        circ.Transparency = 1
+        circ.Thickness = 1.5
+        circ.Visible = true
+        circ.Color = Color3.fromRGB(255,255,255)
+        circ.Filled = false
+        circ.NumSides = 150
+        circ.Radius = Options.FOV
+        return circ
+    end
+    curc = Circle()
+    --// Main \\--
+    UserInputService.InputBegan:Connect(function( input )
+        if input.UserInputType == Enum.UserInputType.MouseButton2 then
+            Down = true
+        end
+    end)
+    UserInputService.InputEnded:Connect(function( input )
+        if input.UserInputType == Enum.UserInputType.MouseButton2 then
+            Down = false
+        end
+    end)
+    RunService.RenderStepped:Connect(function( ... )
+        if Options.Enabled then
+            if Down then
+                if gc() ~= nil and gc().Character:FindFirstChild(Options.AimPart) then
+                    if Options.Smoothness then
+                        pcall(function( ... )
+                            local Info = TweenInfo.new(0.05,Enum.EasingStyle.Linear,Enum.EasingDirection.Out)
+                            game:GetService("TweenService"):Create(Camera,Info,{
+                                CFrame = CFrame.new(Camera.CFrame.p,gc().Character[Options.AimPart].CFrame.p)
+                            }):Play()
+                        end)
+                    else
+                        pcall(function()
+                            Camera.CFrame = CFrame.new(Camera.CFrame.p,gc().Character[Options.AimPart].CFrame.p)
+                        end)
+                    end
+                end
+            end
+            curc.Visible = false
+            curc.Position = Vector2.new(Mouse.X, Mouse.Y+Inset.Y)
+        else
+            -- do nothing except remove the fov
+            curc.Visible = false
+        end
+    end)
+  	end    
+})
