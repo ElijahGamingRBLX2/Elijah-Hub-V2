@@ -390,3 +390,43 @@ Tab3:AddButton({
     end)
   	end    
 })
+
+local Tab4 = Window:MakeTab({
+	Name = "Change Walkspeed",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab4:AddTextbox({
+	Name = "Change Walkspeed",
+	Default = "",
+	TextDisappear = false,
+	Callback = function(speed)
+		while true do
+        wait()
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
+        end
+	end	  
+})
+
+Tab5:AddButton({
+	Name = "Misc",
+	Callback = function()
+      		print("button pressed")
+  	end    
+})
+
+Tab5:AddButton({
+	Name = "Join The Discord Server",
+	Callback = function()
+      	       https://discord.gg/ahU2XqVyp4
+  	end    
+})
+
+Tab5:AddButton({
+	Name = "Destroy UI",
+	Callback = function()
+      		OrionLib:Destroy()
+  	end    
+})
+OrionLib:Init()
