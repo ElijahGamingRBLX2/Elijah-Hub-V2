@@ -415,10 +415,12 @@ local Tab5 = Window:MakeTab({
 	PremiumOnly = false
 })
 
+Tab5:AddLabel("Status: Undetected")
+
 Tab5:AddButton({
 	Name = "Join The Discord Server",
 	Callback = function()
-      	       https://discord.gg/ahU2XqVyp4
+      	setclipboard("https://discord.gg/ahU2XqVyp")
   	end    
 })
 
