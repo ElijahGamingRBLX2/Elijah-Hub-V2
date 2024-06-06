@@ -6,7 +6,7 @@ b:Notify(
 )
 wait(5)
 local c = loadstring(game:HttpGet("https://pastebin.com/raw/RmLqTugH"))()
-local d = c.CreateLib("Darkrai X | Doors", "Serpent")
+local d = c.CreateLib("Darkrai X | Bedwars", "Serpent")
 local f = Instance.new("ScreenGui")
 local g = Instance.new("TextButton")
 f.Name = "Toggle"
