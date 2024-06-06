@@ -2,44 +2,6 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Elija
 
 local Window = Library.CreateLib("Elijah Hub V2 - Survive And Kill The Killers In Area 51", "Serpent")
 
-local Tab = Window:NewTab("Guns")
-local Section = Tab:NewSection("Gun")
-
-Section:NewButton("Get All Guns", "Gives You All Of The Guns", function()
-    local CoreGui = game:GetService("StarterGui")
-
-CoreGui:SetCore("SendNotification", {
-    Title = "Get All Guns",
-    Text = "Getting All Guns",
-    Duration = 5,
-})
-
-wait(1)
-game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = CFrame.new(183, 305, 184)
-wait(1)
-game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = CFrame.new(136, 334, 501)
-wait(1)
-game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = CFrame.new(115, 324, 676)
-wait(1)
-game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = CFrame.new(320, 272, 140)
-wait(1)
-game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = CFrame.new(3, 268, 187)
-wait(1)
-game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = CFrame.new(-104, 313, 461)
-wait(1)
-game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = CFrame.new(-155, 303, 768)
-wait(1)
-game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = CFrame.new(233, 373, 49)
-wait(1)
-game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = CFrame.new(148, 260, 326)
-wait(1)
-game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = CFrame.new(157, 344, 607)
-wait(1)
-game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = CFrame.new(-147, 313, 281)
-wait(1)
-game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = CFrame.new(326, 511, 392)
-end)
-
 local Tab2 = Window:NewTab("Pack A Punch")
 
 local Section2 = Tab2:NewSection("Pack A Punch Guns")
