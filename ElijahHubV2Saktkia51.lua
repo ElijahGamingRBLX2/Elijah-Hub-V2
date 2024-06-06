@@ -3,6 +3,7 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Elija
 local Window = Library.CreateLib("Elijah Hub V2 - Survive And Kill The Killers In Area 51", "Serpent")
 
 local Tab = Window:NewTab("Guns")
+
 local Section = Tab:NewSection("Gun")
 
 Section:NewButton("Get All Guns", "Gives You All Of The Guns", function()
@@ -41,6 +42,7 @@ game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = CFrame.new(326, 51
 end)
 
 local Tab2 = Window:NewTab("Pack A Punch")
+
 local Section2 = Tab2:NewSection("Pack A Punch Guns")
 
 Section2:NewButton("Pack A Punch - Raygun", "Pack A Punch", function()
@@ -376,141 +378,8 @@ Section3:NewButton("Hitbox Expander", "Elijah Hub Hitbox Expander", function()
 loadstring(game:HttpGet("https://pastebin.com/raw/pV5tQwMR"))()
 end)
 
-Section3:NewButton("Killers Ignore You", "Killers Ignore You", function()
-Local = game:GetService('Players').LocalPlayer
-Char  = Local.Character
-touched,tpdback = false, false
-Local.CharacterAdded:connect(function(char)
-    if script.Disabled ~= true then
-        wait(.25)
-        loc = Char.HumanoidRootPart.Position
-        Char:MoveTo(box.Position + Vector3.new(0,.5,0))
-    end
-end)
-game:GetService('UserInputService').InputBegan:connect(function(key)
-    if key.KeyCode == Enum.KeyCode.Equals then
-        if script.Disabled ~= true then
-            script.Disabled = true
-            print'you may re-execute'
-        end
-    end
-end)
-box = Instance.new('Part',workspace)
-box.Anchored = true
-box.CanCollide = true
-box.Size = Vector3.new(10,1,10)
-box.Position = Vector3.new(0,10000,0)
-box.Touched:connect(function(part)
-    if (part.Parent.Name == Local.Name) then
-        if touched == false then
-            touched = true
-            function apply()
-                if script.Disabled ~= true then
-                    no = Char.HumanoidRootPart:Clone()
-                    wait(.25)
-                    Char.HumanoidRootPart:Destroy()
-                    no.Parent = Char
-                    Char:MoveTo(loc)
-                    touched = false
-                end end
-            if Char then
-                apply()
-            end
-        end
-    end
-end)
-repeat wait() until Char
-loc = Char.HumanoidRootPart.Position
-Char:MoveTo(box.Position + Vector3.new(0,.5,0))
-end)
-
-Section3:NewButton("God Mode", "God Mode", function()local stationaryrespawn = false
-local needsrespawning = false
-local haspos = false
-local pos = CFrame.new()
-local Respawning = Instance.new("ScreenGui")
-local RespawningButton = Instance.new("TextButton")
-
-Respawning.Name = "Respawning"
-Respawning.Parent = game.CoreGui
-
-
-
-
-function StatRespawn(inputObject, gameProcessedEvent)
-    if inputObject.KeyCode == Enum.KeyCode.N and gameProcessedEvent == false then        
-stationaryrespawn = not stationaryrespawn
-    end
-end
-
-
-
-
-
-
-game:GetService("UserInputService").InputBegan:connect(StatRespawn)
-
-
-
-game:GetService('RunService').Stepped:connect(function()
-
-
-if stationaryrespawn == false and game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
-if haspos == false then
-pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-haspos = true
-end
-
-needsrespawning = true
-end
-
-
-if needsrespawning == true then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
-end
-
-
-if stationaryrespawn == false then 
-RespawningButton.Text = "Returning"
-else
-RespawningButton.Text = "Not Returning"
-end
-
-
-end)
-
-game.Players.LocalPlayer.CharacterAdded:connect(function()
-wait(0.6)
-needsrespawning = false
-haspos = false
-end)
-
-game.Players.LocalPlayer.CharacterAdded:connect(function()
-wait(0.6)
-needsrespawning = false
-haspos = false
-end)
-end)
-
-game.Players.LocalPlayer.CharacterAdded:connect(function()
-wait(0.6)
-needsrespawning = false
-haspos = false
-end)
-
-Section3:NewButton("Infinite Ammo", "Infinite Ammo", function()
-while true do
-local oldpos = workspace["AREA51"]["PlantRoom"]["Box of Shells"]["Box"].CFrame
-workspace["AREA51"]["PlantRoom"]["Box of Shells"]["Box"].CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-workspace["AREA51"]["PlantRoom"]["Box of Shells"]["Box"].CanCollide = false
-wait()
-workspace["AREA51"]["PlantRoom"]["Box of Shells"]["Box"].CFrame = oldpos
-workspace["AREA51"]["PlantRoom"]["Box of Shells"]["Box"].CanCollide = true
-wait()
-end
-end)
-
 local Tab4 = Window:NewTab("Visuals")
+	
 local Section4 = Tab4:NewSection("Visuals")
 
 Section4:NewButton("Remove All Doors", "Remove All Doors", function()
@@ -562,6 +431,7 @@ Light.LightingChanged:Connect(dofullbright)
 end)
 
 local Tab5 = Window:NewTab("Teleport")
+	
 local Section5 = Tab5:NewSection("Teleport")
 
 Section5:NewButton("Spawn", "Teleport To Spawn", function()
